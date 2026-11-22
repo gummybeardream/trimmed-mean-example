@@ -7,22 +7,36 @@ import (
 	trimmedmean "github.com/gummybeardream/trimmed-mean"
 )
 
+const trimProportion = 0.05
+
 func main() {
-	integers := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-
-	integerMean, err := trimmedmean.Mean(integers, 0.10)
+	integers, err := readIntegers("data/integers.csv")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("read integer data: %v", err)
 	}
 
-	fmt.Printf("Integer trimmed mean: %.2f\n", integerMean)
-
-	floats := []float64{1.5, 2.5, 3.5, 4.5, 100.5}
-
-	floatMean, err := trimmedmean.Mean(floats, 0.20)
+	floats, err := readFloats("data/floats.csv")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("read floating-point data: %v", err)
 	}
 
-	fmt.Printf("Floating-point trimmed mean: %.2f\n", floatMean)
+	integerMean, err := trimmedmean.Mean(integers, trimProportion)
+	if err != nil {
+		log.Fatalf("calculate integer trimmed mean: %v", err)
+	}
+
+	floatMean, err := trimmedmean.Mean(floats, trimProportion)
+	if err != nil {
+		log.Fatalf("calculate floating-point trimmed mean: %v", err)
+	}
+
+	fmt.Println("Go trimmed mean validation")
+	fmt.Printf(
+		"Integer trimmed mean (5%%): %.10f\n",
+		integerMean,
+	)
+	fmt.Printf(
+		"Floating-point trimmed mean (5%%): %.10f\n",
+		floatMean,
+	)
 }
