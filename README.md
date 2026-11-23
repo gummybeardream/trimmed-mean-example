@@ -161,7 +161,7 @@ Both implementations read the same CSV files and apply 5% symmetric trimming.
 | 100 integers | 49.5000000000 | 49.5000000000 | 0.0000000000 |
 | 100 floating-point values | 49.7500000000 | 49.7500000000 | 0.0000000000 |
 
-The results agree to the ten decimal places displayed. This provides evidencethat the Go package reproduces the base R trimmed-mean results for these datasets. It does not prove that every possible dataset will produce identical results.
+The results agree to the ten decimal places displayed. This provides evidence that the Go package reproduces the base R trimmed-mean results for these datasets. It does not prove that every possible dataset will produce identical results.
 
 ## Testing
 
